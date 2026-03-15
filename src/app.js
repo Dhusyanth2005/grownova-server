@@ -16,7 +16,8 @@ app.use(cors({
     'http://localhost:5174',
     'https://grownova-client.vercel.app',
     'https://grownova.org.in',
-    'https://www.grownova.org.in'
+    'https://www.grownova.org.in',
+    'https://grownova-admin.vercel.app'
   ],
   credentials: true,          // only if needed
 }));
