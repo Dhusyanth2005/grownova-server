@@ -7,12 +7,26 @@ const router = express.Router();
 // Create customer (public - no auth)
 router.post('/', async (req, res) => {
   try {
+    const { email } = req.body;
+
+    // Check if email already exists
+    const existingCustomer = await Customer.findOne({ email });
+
+    if (existingCustomer) {
+      return res.status(409).json({
+        success: false,
+        message: "Email already registered",
+      });
+    }
+
     const customer = new Customer(req.body);
     await customer.save();
+
     res.status(201).json({
       success: true,
       data: customer
     });
+
   } catch (err) {
     res.status(400).json({
       success: false,
